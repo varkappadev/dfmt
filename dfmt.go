@@ -73,6 +73,10 @@ escaping or treatment for variable field counts. Special character names:
 NL (new line), CR (carriage return), LF (line feed), NUL (\x00), or 
 TAB (tabulator).
 
+The behaviour of CSFs configured without a field delimiter and with NL or NUL
+is undefined. It may behave like lines or null-terminated strings but this
+may change at any time and may not be consistent across subcommands. 
+
 %s output of anything but maps and objects is added to a global key '_' 
 as a key is required.
 

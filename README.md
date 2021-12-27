@@ -77,6 +77,12 @@ strings.
 - Non-finite floating point numbers (`+Inf`, `-Inf`, `NaN`) are kept as
 strings even in transformation cases that parse numbers in input.
 
+- CSF configured without a field delimiter and with the record delimiters
+corresponding to strings (NL or NUL) may behave like strings rather than 
+as CSF input. "May" means this is undefined behaviour at this point.
+Different subcommands may have different behaviour and it may change 
+over time.
+
 Also check the [Issues
 section](https://github.com/varkappadev/dfmt/issues) for reported bugs
 and limitations.

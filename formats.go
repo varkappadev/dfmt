@@ -29,7 +29,7 @@ var (
 	formatNameStrings  string   = formatNamesStrings[0]
 	formatNamesNTStr   []string = []string{"NTStr", "NTStrings", "NTString", "NTS"}
 	formatNameNTStr    string   = formatNamesNTStr[0]
-	formatNameCSF      string   = TextFormat{}.Name()
+	formatNameCSF      string   = "CSF"
 
 	fidJSON     string   = strings.ToLower(formatNameJSON)
 	fidYAML     string   = strings.ToLower(formatNameYAML)
@@ -227,7 +227,18 @@ type TextFormat struct {
 }
 
 func (f TextFormat) Name() string {
-	return "CSF"
+	if f.FieldDelimiter == "" {
+		switch f.RecordDelimiter {
+		case "":
+			return formatNameStrings
+		case "\000":
+			return formatNameNTStr
+		default:
+			return formatNameCSF
+		}
+	} else {
+		return formatNameCSF
+	}
 }
 
 func (f TextFormat) SupportedExtensions() []string {
